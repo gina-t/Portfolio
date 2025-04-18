@@ -1,0 +1,35 @@
+@import 'tailwindcss';
+
+@font-face {
+  font-family: 'Cupidus';
+  font-style: normal;
+  src: url('../src/assets/Cupidus-Extralight.ttf') format('truetype');
+}
+
+/* Define custom dark variant using a class selector */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: 'Cupidus', sans-serif;
+  --color-mode: light dark;
+}
+
+/* Base styles */
+body h1 h2 h3 h4 h5 h6 {
+  font-family: var(--font-sans);
+}
+
+/* Add a smooth transition between modes */
+body {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+html.dark {
+  color-scheme: dark;
+  background-color: #030712; 
+}
+
+html.light {
+  color-scheme: light;
+  background-color: #ffffff; 
+}
