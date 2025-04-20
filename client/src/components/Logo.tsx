@@ -6,7 +6,7 @@ export function Logo(props: React.ComponentPropsWithoutRef<'div'>) {
 
   return (
     <div className="relative flex items-center" {...props}>
-      <img src={logo} alt="Portfolio" className="h-17 relative -ml-2 z-10" />
+      <img src={logo} alt="Portfolio" className="h-16 relative -ml-2 z-10" />
         <mask id={`${id}-m`} fill="#fff">
           <path
             fillRule="evenodd"
