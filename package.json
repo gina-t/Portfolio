@@ -1,0 +1,36 @@
+{
+  "name": "portfolio",
+  "version": "1.0.0",
+  "description": "## Table of Contents",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "client",
+    "server"
+  ],
+
+  "scripts": {
+    "dev:client": "cd client && npm run dev",
+    "dev:server": "cd server && npm run dev",
+    "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
+    "build": "npm run build --workspace=client",
+    "render-build": "npm install && npm run build --workspace=client && npm run build --workspace=server",
+    "start": "node server/dist/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gina-t/Portfolio.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gina-t/Portfolio/issues"
+  },
+  "homepage": "https://github.com/gina-t/Portfolio#readme",
+
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}

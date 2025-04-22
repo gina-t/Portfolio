@@ -1,3 +1,8 @@
+.env.development
+.env.production
+# Ignore node_modules
+node_modules
+
 itignore/blob/main/VisualStudio.gitignore
 
 # User-specific files
