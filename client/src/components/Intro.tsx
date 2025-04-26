@@ -1,26 +1,20 @@
 import { Link } from 'react-router-dom';
 import { IconLink } from './IconLink';
 import { Logo } from './Logo';
-import { SignUpForm } from './SignUpForm';
-
-
-function BookIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
-  return (
-    <svg viewBox="0 0 16 16" aria-hidden="true" fill="currentColor" {...props}>
-      <path d="M7 3.41a1 1 0 0 0-.668-.943L2.275 1.039a.987.987 0 0 0-.877.166c-.25.192-.398.493-.398.812V12.2c0 .454.296.853.725.977l3.948 1.365A1 1 0 0 0 7 13.596V3.41ZM9 13.596a1 1 0 0 0 1.327.946l3.948-1.365c.429-.124.725-.523.725-.977V2.017c0-.32-.147-.62-.398-.812a.987.987 0 0 0-.877-.166L9.668 2.467A1 1 0 0 0 9 3.41v10.186Z" />
-    </svg>
-  );
-}
+import { CTAButton } from './CTAButton';
+import portrait from '../assets/portrait.jpg';
 
 function GitHubIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   return (
     <svg 
-      viewBox="0 0 16 16"   
+      viewBox="0 0 20 20"   
       aria-hidden="true" 
       fill="currentColor" 
       {...props}>
       <path 
-        d="M8 .198a8 8 0 0 0-8 8 7.999 7.999 0 0 0 5.47 7.59c.4.076.547-.172.547-.384 0-.19-.007-.694-.01-1.36-2.226.482-2.695-1.074-2.695-1.074-.364-.923-.89-1.17-.89-1.17-.725-.496.056-.486.056-.486.803.056 1.225.824 1.225.824.714 1.224 1.873.87 2.33.666.072-.518.278-.87.507-1.07-1.777-.2-3.644-.888-3.644-3.954 0-.873.31-1.586.823-2.146-.09-.202-.36-1.016.07-2.118 0 0 .67-.214 2.2.82a7.67 7.67 0 0 1 2-.27 7.67 7.67 0 0 1 2 .27c1.52-1.034 2.19-.82 2.19-.82.43 1.102.16 1.916.08 2.118.51.56.82 1.273.82 2.146 0 3.074-1.87 3.75-3.65 3.947.28.24.54.73.54 1.48 0 1.07-.01 1.93-.01 2.19 0 .21.14.46.55.38A7.972 7.972 0 0 0 16 8.199a8 8 0 0 0-8-8Z" 
+        fillRule="evenodd"
+        d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+        clipRule="evenodd"
       />
     </svg>
   );
@@ -36,7 +30,7 @@ function LinkedInIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
       <path
         fillRule="evenodd"
         d="M19.7065 3H4.34844C3.62264 3 3.04199 3.58065 3.04199 4.30645V19.6935C3.04199 20.3903 3.62264 21 4.34844 21H19.6485C20.3743 21 20.9549 20.4194 20.9549 19.6935V4.27742C21.013 3.58065 20.4323 3 19.7065 3ZM8.35491 18.3H5.71297V9.73548H8.35491V18.3ZM7.01942 8.54516C6.14846 8.54516 5.4807 7.84839 5.4807 7.00645C5.4807 6.16452 6.17749 5.46774 7.01942 5.46774C7.86136 5.46774 8.55813 6.16452 8.55813 7.00645C8.55813 7.84839 7.91942 8.54516 7.01942 8.54516ZM18.371 18.3H15.7291V14.1484C15.7291 13.1613 15.7001 11.8548 14.3356 11.8548C12.942 11.8548 12.7388 12.9581 12.7388 14.0613V18.3H10.0968V9.73548H12.6807V10.9258H12.7097C13.0872 10.229 13.9291 9.53226 15.2356 9.53226C17.9356 9.53226 18.4291 11.2742 18.4291 13.6548V18.3H18.371Z"
-        clipRule="evenodd"
+      clipRule='evenodd'
       />
     </svg>
   );
@@ -86,12 +80,22 @@ export function Intro() {
         due to my vast experience working in the operating theatre or
         individually due to my exceptional motivation and singular focus.
       </p>
-      <SignUpForm />
+     
+      <CTAButton />
+
       <div className="mt-8 flex flex-wrap justify-center gap-x-1 gap-y-3 sm:gap-x-2 lg:justify-start">
-        <IconLink to="/resume.pdf" icon={BookIcon} className="flex-none">
-          Documentation
+        <IconLink 
+          to="https://www.linkedin.com/in/dr-gina-tsanaktsidis-072020b8" 
+          icon={LinkedInIcon} 
+          className="flex-none"
+        >
+          LinkedIn
         </IconLink>
-        <IconLink to="https://github.com/gina-t" icon={GitHubIcon} className="flex-none">
+
+        <IconLink to="https://github.com/gina-t" 
+        icon={GitHubIcon} 
+        className="flex-none"
+        >
           GitHub
         </IconLink>
       </div>
@@ -101,16 +105,16 @@ export function Intro() {
 
 export function IntroFooter() {
   return (
-    <p className="flex items-baseline gap-x-2 text-[0.8125rem]/6 text-gray-500">
+    <p className="flex items-center gap-x-2 text-[0.8125rem]/6 text-gray-500">
       Brought to you by{' '}
-      <IconLink 
-        to="https://www.linkedin.com/in/dr-gina-tsanaktsidis-072020b8" 
-        icon={LinkedInIcon} 
-        compact
-        className="flex-none"
-      >
-        Dr Gina Tsanaktsidis
-      </IconLink>
+        <span className="text-[0.8125rem]/6 text-gray-400 hover:text-gray-300 transition">
+          Dr Gina Tsanaktsidis
+        </span>
+        <img 
+          src={portrait} 
+          alt="Dr. Gina Tsanaktsidis"
+          className="ml-3 h10 w-8 rounded-md object-cover" 
+        />
     </p>
   );
 }

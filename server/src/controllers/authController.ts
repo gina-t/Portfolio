@@ -4,11 +4,17 @@ import User from "../models/userModel.js";
 import { AuthRequest } from '../middleware/authMiddleware.js';
 
 // @desc    Register a new user
-// @route   POST /api/auth/register
+// @route   POST /api/auth/
 // @access  Public
 export const registerUser = async (req: Request, res: Response): Promise<void> => {
-  const { username, email, password } = req.body;
   try {
+    const { username, email, password } = req.body;
+
+    // Validate input
+    if (!username || !email || !password) {
+      res.status(400).json({ message: "All fields are required" });
+      return;
+    }
     // Check if user already exists
     const existingUser = await User.findOne({ $or: [{ username }, { email }] });
     if (existingUser) {
@@ -38,7 +44,7 @@ export const registerUser = async (req: Request, res: Response): Promise<void> =
     );
   } catch (error: any) {
     console.error("Error creating user:", error);
-    res.status(400).json({ message: "Internal server error" });
+    res.status(500).json({ message: "Internal server error" });
   }
 };
 

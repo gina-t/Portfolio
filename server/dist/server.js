@@ -1,37 +1,94 @@
+// Environment configuration (keep these first)
+import dotenv from 'dotenv';
+import path from 'node:path';
+import { fileURLToPath } from 'url';
+// Set up dirname for ESM
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+// Load environment variables based on NODE_ENV
+const envFile = process.env.NODE_ENV === 'production'
+    ? '.env.production'
+    : '.env.development';
+dotenv.config({ path: path.resolve(__dirname, '..', envFile) });
+console.log('JWT_SECRET exists:', !!process.env.JWT_SECRET);
+// Core dependencies
 import express from 'express';
 import cors from 'cors';
-import dotenv from 'dotenv';
+// Application modules
 import connectDB from './config/db.js';
 import authRoutes from './routes/authRoutes.js';
 import cvRoutes from './routes/cvRoutes.js';
 import { errorHandler } from './middleware/errorMiddleware.js';
-// Load environment variables
-dotenv.config();
 const app = express();
-const PORT = process.env.PORT || 5000;
-// Middleware
-app.use(cors());
+const PORT = process.env.PORT || 3001;
+// serve static files from the "static" directory
+app.use('/static', express.static(path.join(__dirname, '../static')));
+// Set up CORS
+app.use(cors({
+    origin: 'http://localhost:5173',
+    credentials: true
+}));
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+// Security headers
+app.use((req, res, next) => {
+    res.setHeader('X-Content-Type-Options', 'nosniff');
+    res.setHeader('X-XSS-Protection', '1; mode=block');
+    res.setHeader('X-Frame-Options', 'DENY');
+    next();
+});
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/cv', cvRoutes);
+// API documentation route
+app.get('/api', (req, res) => {
+    res.json({
+        message: 'Portfolio API Documentation',
+        routes: {
+            auth: {
+                register: { method: 'POST', path: '/api/auth/' },
+                login: { method: 'POST', path: '/api/auth/login' },
+                logout: { method: 'POST', path: '/api/auth/logout' },
+                getCurrentUser: { method: 'GET', path: '/api/auth/me' },
+            },
+            cv: {
+                download: { method: 'GET', path: '/api/cv/download' }
+            }
+        }
+    });
+});
 // Default route
 app.get('/', (req, res) => {
     res.send('Portfolio API is running');
 });
 // Error handling
 app.use(errorHandler);
-// Connect to MongoDB
+// Connect to MongoDB and start server
 const startServer = async () => {
     try {
         await connectDB();
-        console.log('MongoDB connected');
-        app.listen(PORT, () => {
-            console.log(`Server running on port ${PORT}`);
+        console.log('Database connected successfully');
+        const server = app.listen(PORT, () => {
+            console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`);
         });
+        // Graceful shutdown
+        const shutdown = async () => {
+            console.log('Shutting down server...');
+            server.close(() => {
+                console.log('Server closed');
+                process.exit(0);
+            });
+            // If server doesn't close in 10s, force shutdown
+            setTimeout(() => {
+                console.error('Could not close connections in time, forcing shutdown');
+                process.exit(1);
+            }, 10000);
+        };
+        process.on('SIGTERM', shutdown);
+        process.on('SIGINT', shutdown);
     }
     catch (error) {
-        console.error('MongoDB connection error:', error);
+        console.error('Failed to start server:', error);
         process.exit(1);
     }
 };

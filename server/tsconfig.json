@@ -1,35 +1,39 @@
 {
   "compilerOptions": {
     /* Language and Environment */
-    "lib": ["es2020"],                              /* Specify library files to be included in the compilation. */
-    "target": "es2020",                             /* Set the JavaScript language 
-    /* Modules */
-    "module": "nodenext",     
-    "moduleResolution": "nodenext",                 /* Specify module resolution strategy. */
-    
+    "lib": [
+      "es2020"
+    ] /* Specify library files to be included in the compilation. */,
+    "target": "es2020" /* Set the JavaScript language 
+    /* Modules */,
+    "module": "nodenext",
+    "moduleResolution": "nodenext" /* Specify module resolution strategy. */,
+
     /* JavaScript Support */
-    "allowJs": true,                                /* Allow JavaScript files to be a part of your program. Use the 'checkJS' option to get errors from these files. */
-    "checkJs": true,                                /* Enable error reporting in type-checked JavaScript files. */
+    "allowJs": true /* Allow JavaScript files to be a part of your program. Use the 'checkJS' option to get errors from these files. */,
+    "checkJs": true /* Enable error reporting in type-checked JavaScript files. */,
 
     /* Emit */
-    "declaration": true,                            /* Generate .d.ts files from TypeScript and JavaScript files in your project. */
-   
-    "noEmitOnError": true,                          /* Disable emitting files if any type checking errors are reported. */
+    "declaration": true /* Generate .d.ts files from TypeScript and JavaScript files in your project. */,
+
+    "noEmitOnError": true /* Disable emitting files if any type checking errors are reported. */,
 
     /* Interop Constraints */
-    "esModuleInterop": true,                        /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables 'allowSyntheticDefaultImports' for type compatibility. */
-    "resolveJsonModule": true,                      /* Include modules imported with .json extension. */
-    "sourceMap": true,                              /* Generates corresponding '.map' file. */
-    
-    "outDir": "./dist",                             /* Redirect output structure to the directory. */
-    "rootDir": "./src",                             /* Specify the root directory of input files. Use to control the output directory structure with --outDir. */
-    "forceConsistentCasingInFileNames": true,       /* Ensure that casing is correct in imports. */
+    "esModuleInterop": true /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables 'allowSyntheticDefaultImports' for type compatibility. */,
+    "resolveJsonModule": true /* Include modules imported with .json extension. */,
+    "sourceMap": true /* Generates corresponding '.map' file. */,
+
+    "outDir": "./dist" /* Redirect output structure to the directory. */,
+    "rootDir": "./src" /* Specify the root directory of input files. Use to control the output directory structure with --outDir. */,
+    "forceConsistentCasingInFileNames": true /* Ensure that casing is correct in imports. */,
 
     /* Type Checking */
-    "strict": true,                                 /* Enable all strict type-checking options. */
-   
+    "strict": true /* Enable all strict type-checking options. */,
+
     /* Completeness */
-    "skipDefaultLibCheck": true,                    /* Skip type checking .d.ts files that are included with TypeScript. */
-    "skipLibCheck": true                             /* Skip type checking all .d.ts files. */
-  }
+    "skipDefaultLibCheck": true /* Skip type checking .d.ts files that are included with TypeScript. */,
+    "skipLibCheck": true /* Skip type checking all .d.ts files. */
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
 }
