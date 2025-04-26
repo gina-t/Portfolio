@@ -1,7 +1,10 @@
 .env.development
 .env.production
-# Ignore node_modules
 node_modules
+dist
+server/dist
+*/dist
+
 
 itignore/blob/main/VisualStudio.gitignore
 
