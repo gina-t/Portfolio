@@ -11,8 +11,8 @@ import decibel from '../assets/decibel.png';
 import social_network from '../assets/social_network.png';
 import kanban from '../assets/kanban.png';
 import candidate_search from '../assets/candidate_search.png';
+
 const HomePage = () => {
-  
   return (
     <Layout>
       <Timeline />
