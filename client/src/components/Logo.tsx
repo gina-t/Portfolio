@@ -6,7 +6,12 @@ export function Logo(props: React.ComponentPropsWithoutRef<'div'>) {
 
   return (
     <div className="relative flex items-center" {...props}>
-      <img src={logo} alt="Portfolio" className="h-16 relative -ml-2 z-10" />
+      <img src={logo} alt="Portfolio" className="h-12 relative -ml-2 mt-3 z-10" />
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className="absolute"
+        viewBox="0 0 32 32"
+      >
         <mask id={`${id}-m`} fill="#fff">
           <path
             fillRule="evenodd"
@@ -20,17 +25,8 @@ export function Logo(props: React.ComponentPropsWithoutRef<'div'>) {
           d="M31.75 18h-8.13a8 8 0 01-15.5 0H0a16 16 0 0031.75 0zm0-4h-8.13a8 8 0 00-15.5 0H0a16 16 0 0131.75 0z"
           fill={`url(#${id}-g)`}
         />
-        <defs>
-          <linearGradient
-            id={`${id}-g`}
-            x1={15.88}
-            y1={0}
-            x2={15.88}
-            y2={32}
-            gradientUnits="userSpaceOnUse"
-          >
-          </linearGradient>
-        </defs>
+        
+      </svg>
     </div>
   );
 }
