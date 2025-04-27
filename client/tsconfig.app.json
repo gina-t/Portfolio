@@ -8,7 +8,7 @@
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "typeRoots": ["./node_modules/@types", "./src/types"],
+    "typeRoots": ["./node_modules/@types"],
 
     /* Bundler mode */
     "moduleResolution": "bundler",
@@ -25,10 +25,5 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.tsx",
-    "src/**/*.d.ts",
-    "src/types/global.d.ts"
-  ]
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.d.ts", "global.d.ts"]
 }
