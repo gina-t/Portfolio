@@ -11,11 +11,21 @@ declare global {
   }
 }
 
-declare module 'react'
-declare module 'react-dom'
+declare module 'react';
+declare module 'react-dom';
 declare module 'react-dom/client';
 declare module 'react/jsx-runtime';
-declare module '@vitejs/plugin-react';
-declare module '@tailwindcss/vite';
+
+declare module '@vitejs/plugin-react' {
+  import { Plugin } from 'vite';
+  function reactPlugin(options?: unknown): Plugin;
+  export default reactPlugin;
+}
+
+declare module '@tailwindcss/vite' {
+  import { Plugin } from 'vite';
+  function tailwindPlugin(options?: unknown): Plugin;
+  export default tailwindPlugin;
+}
 
 export {};
