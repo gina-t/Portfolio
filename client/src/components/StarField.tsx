@@ -8,6 +8,18 @@ gsap.registerPlugin(useGSAP);
 
 type Star = [x: number, y: number, dim?: boolean, blur?: boolean];
 
+interface BlurPointProps {
+  blurId: string;
+  point: Star;
+  key?: number; // Make key optional
+}
+
+interface ConstellationProps {
+  points: Star[];
+  blurId: string;
+  key?: number; // Make key optional
+}
+
 const stars: Array<Star> = [
   [4, 4, true, true],
   [4, 44, true],
@@ -69,13 +81,7 @@ const constellations: Array<Array<Star>> = [
   ],
 ];
 
-function Star({
-  blurId,
-  point: [cx, cy, dim, blur],
-}: {
-  blurId: string;
-  point: Star;
-}) {
+function Star({ blurId, point }: BlurPointProps) {
   const groupRef = useRef<SVGGElement>(null);
   const circleRef = useRef<SVGCircleElement>(null);
 
@@ -94,8 +100,8 @@ function Star({
       });
 
       gsap.to(circleRef.current, {
-        opacity: dim ? 0.5 : 0.6,
-        scale: dim ? 1.2 : 1,
+        opacity: point[2] ? 0.5 : 0.6,
+        scale: point[2] ? 1.2 : 1,
         duration: Math.random() * 2 + 2,
         delay,
         repeat: -1,
@@ -110,26 +116,20 @@ function Star({
     <g ref={groupRef} className="opacity-0">
       <circle
         ref={circleRef}
-        cx={cx}
-        cy={cy}
+        cx={point[0]}
+        cy={point[1]}
         r={1}
         style={{
-          transformOrigin: `${cx / 16}rem ${cy / 16}rem`,
-          opacity: dim ? 0.2 : 1,
+          transformOrigin: `${point[0] / 16}rem ${point[1] / 16}rem`,
+          opacity: point[2] ? 0.2 : 1,
         }}
-        filter={blur ? `url(#${blurId})` : undefined}
+        filter={point[3] ? `url(#${blurId})` : undefined}
       />
     </g>
   );
 }
 
-function Constellation({
-  points,
-  blurId,
-}: {
-  points: Array<Star>;
-  blurId: string;
-}) {
+function Constellation({ points, blurId }: ConstellationProps) {
   const pathRef = useRef<SVGPathElement>(null);
   const constellationRef = useRef(null);
   const uniquePoints = points.filter(
@@ -175,7 +175,7 @@ function Constellation({
         strokeDashoffset={1}
         pathLength={1}
         fill="transparent"
-        d={`M ${points.join('L')}`}
+        d={`M ${points.map(([x, y]) => `${x},${y}`).join(' L ')}`}
         className="invisible"
       />
       {uniquePoints.map((point, pointIndex) => (
