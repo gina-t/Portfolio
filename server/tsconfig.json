@@ -37,6 +37,6 @@
     "strictNullChecks": true /* Enable strict null checks. */,
     "typeRoots": ["./node_modules/@types", "./src/types"]
   },
-  "include": ["src/**/*.ts", "src/types/express.d.ts"],
+  "include": ["src/**/*.ts", "src/types/*.d.ts"],
   "exclude": ["node_modules", "dist"]
 }
