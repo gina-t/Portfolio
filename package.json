@@ -13,7 +13,6 @@
     "dev:client": "cd client && npm run dev",
     "dev:server": "cd server && npm run dev",
     "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
-    
     "build": "concurrently \"cd server && npm run build\" \"cd client && npm run build\"",
     "render-build": "npm install && npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -28,7 +27,7 @@
     "url": "https://github.com/gina-t/Portfolio/issues"
   },
   "homepage": "https://github.com/gina-t/Portfolio#readme",
-  "devDependencies": {
+  "dependencies": {
     "concurrently": "^9.1.2"
   }
 }
