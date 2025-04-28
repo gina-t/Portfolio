@@ -17,7 +17,7 @@ dotenv.config({ path: path.resolve(__dirname, '..', envFile) });
 console.log('JWT_SECRET exists:', !!process.env.JWT_SECRET);
 
 // Core dependencies
-import express, { Request, Response } from 'express';
+import express, { Request, Response, NextFunction } from 'express';
 import cors from 'cors';
 
 // Application modules
@@ -33,15 +33,17 @@ const PORT = process.env.PORT || 3001;
 app.use('/static', express.static(path.join(__dirname, '../static')));
 
 // Set up CORS
-app.use(cors({
-  origin: 'http://localhost:5173', 
-  credentials: true
-}));
+app.use(
+  cors({
+    origin: 'http://localhost:5173',
+    credentials: true,
+  })
+);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Security headers
-app.use((req, res, next) => {
+// Security headers (with proper types)
+app.use((_req: Request, res: Response, next: NextFunction) => {
   res.setHeader('X-Content-Type-Options', 'nosniff');
   res.setHeader('X-XSS-Protection', '1; mode=block');
   res.setHeader('X-Frame-Options', 'DENY');
@@ -53,7 +55,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/cv', cvRoutes);
 
 // API documentation route
-app.get('/api', (req: Request, res: Response) => {
+app.get('/api', (_req: Request, res: Response) => {
   res.json({
     message: 'Portfolio API Documentation',
     routes: {
@@ -64,14 +66,14 @@ app.get('/api', (req: Request, res: Response) => {
         getCurrentUser: { method: 'GET', path: '/api/auth/me' },
       },
       cv: {
-        download: { method: 'GET', path: '/api/cv/download' }
-      }
-    }
+        download: { method: 'GET', path: '/api/cv/download' },
+      },
+    },
   });
 });
 
-// Default route
-app.get('/', (req, res) => {
+// Default route (with proper types)
+app.get('/', (_req: Request, res: Response) => {
   res.send('Portfolio API is running');
 });
 
