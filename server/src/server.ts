@@ -37,7 +37,7 @@ app.use(
   cors({
     origin:
       process.env.NODE_ENV === 'production'
-        ? [process.env.CLIENT_URL || 'https://portfolio-s69z.onrender.com']
+        ? process.env.CLIENT_URL || 'https://portfolio-s69z.onrender.com'
         : 'http://localhost:5173',
     credentials: true,
   })
@@ -52,7 +52,7 @@ app.use((_req: Request, res: Response, next: NextFunction) => {
   res.setHeader('X-Frame-Options', 'DENY');
   res.setHeader(
     'Content-Security-Policy',
-    "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline';"
+    "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline';"
   );
   next();
 });
@@ -85,7 +85,7 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../../client/dist')));
 
   // All unmatched requests should serve the React app
-  app.get('*', (_req, res) => {
+  app.get('/*', (_req, res) => {
     res.sendFile(path.join(__dirname, '../../client/dist/index.html'));
   });
 }
