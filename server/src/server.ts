@@ -35,13 +35,22 @@ app.use('/static', express.static(path.join(__dirname, '../static')));
 // Set up CORS
 app.use(
   cors({
-    origin:
-      process.env.NODE_ENV === 'production'
-        ? process.env.CLIENT_URL || 'https://portfolio-s69z.onrender.com'
-        : 'http://localhost:5173',
+    origin: function (origin, callback) {
+      const allowedOrigins = [
+        'https://portfolio-s69z.onrender.com',
+        'http://localhost:5173',
+      ];
+      // Allow requests with no origin
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
     credentials: true,
   })
 );
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -81,12 +90,25 @@ app.get('/api', (_req: Request, res: Response) => {
 
 // Third: Serve the client build in production
 if (process.env.NODE_ENV === 'production') {
-  // Serve static files from client/dist
-  app.use(express.static(path.join(__dirname, '../../client/dist')));
+  const staticPath = path.join(__dirname, '../../client/dist');
 
-  // All unmatched requests should serve the React app
-  app.get('/*', (_req, res) => {
-    res.sendFile(path.join(__dirname, '../../client/dist/index.html'));
+  // Serve static files from the client build
+  app.use(express.static(staticPath));
+
+  // Use middleware instead for SPA fallback
+  app.use((req: Request, res: Response, next: NextFunction) => {
+    if (req.path.startsWith('/api')) {
+      return next();
+    }
+    res.sendFile(path.join(staticPath, 'index.html'));
+  });
+} else {
+  // Use middleware for dev mode too
+  app.use((req: Request, res: Response, next: NextFunction) => {
+    if (req.path.startsWith('/api')) {
+      return next();
+    }
+    res.send('API is running in development mode');
   });
 }
 
