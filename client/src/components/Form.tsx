@@ -119,7 +119,7 @@ const Form = ({ type }: FormProps) => {
     <>
       <div className="flex min-h-full flex-1 flex-col justify-center py-12 sm:px-6 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-md">
-          <h2 className="mt-6 text-center text-xl/9 font-bold tracking-tight text-gray-600">
+          <h2 className="mt-6 text-center text-lg/9 font-bold tracking-tight text-gray-600 dark:text-gray-300">
             {isRegister ? 'Register for an account' : 'Sign in to your account'}
           </h2>
         </div>
@@ -350,23 +350,17 @@ const Form = ({ type }: FormProps) => {
             </div>
           </div>
 
-          <p className="mt-10 text-center text-sm/6 text-gray-500">
+          <p className="mt-10 text-center text-base/6 text-gray-900 dark:text-gray-300">
             {isRegister ? 'Already registered?' : 'Not registered?'}{' '}
             <button
               onClick={() => navigate(isRegister ? '/login' : '/register')}
-              className="font-semibold text-indigo-600 hover:text-indigo-500"
+              className="ml-2 font-semibold text-indigo-600 hover:text-indigo-500"
             >
               {isRegister ? 'Log in' : 'Register now'}
             </button>
           </p>
         </div>
       </div>
-      {/* {showForgotPasswordModal && (
-        <ForgotPasswordModal
-          isOpen={showForgotPasswordModal}
-          onClose={() => setShowForgotPasswordModal(false)}
-        />
-      )} */}
     </>
   );
 };

@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+
 import { IconLink } from './IconLink';
 import { Logo } from './Logo';
 import { CTAButton } from './CTAButton';
@@ -40,9 +40,12 @@ export function Intro() {
   return (
     <>
       <div>
-        <Link to="/">
-          <Logo className="inline-block h-8 w-auto" />
-        </Link>
+        <img 
+          src={portrait} 
+          alt="Dr. Gina Tsanaktsidis"
+          className="ml-1 h-22 w-16 sm:h-22 sm:w-16 rounded-lg object-cover shadow-lg transition-all duration-300 hover:shadow-sky-500/30 hover:scale-[1.03]" 
+        />
+        
       </div>
       <h1 className="mt-14 font-display text-4xl/tight font-light text-white">
         Dr Gina Tsanaktsidis{' '}
@@ -107,14 +110,11 @@ export function IntroFooter() {
   return (
     <p className="flex items-center gap-x-2 text-[0.8125rem]/6 text-gray-500">
       Brought to you by{' '}
+        <Logo className="inline-block w-auto" />   
         <span className="text-[0.8125rem]/6 text-gray-400 hover:text-gray-300 transition">
-          Dr Gina Tsanaktsidis
+          Dr Gina Tsanaktsidis  
         </span>
-        <img 
-          src={portrait} 
-          alt="Dr. Gina Tsanaktsidis"
-          className="ml-3 h10 w-8 rounded-md object-cover" 
-        />
+          
     </p>
   );
 }
