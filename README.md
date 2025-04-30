@@ -124,11 +124,11 @@ Link to deployed app url:
 
 Screenshots of app demonstrating functionality:
 
-### screenshot-1
+### dark mode
 
 ![home page dark](./client/src/assets/screenshot-1.png)
 
-### screenshot-2
+### light mode
 
 ![home page light](./client/src/assets/screenshot-2.png)
 
