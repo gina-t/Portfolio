@@ -866,12 +866,13 @@ const HomePage = () => {
                 Additional Skills
               </h3>
               <ul className="mt-2 space-y-1 text-gray-600 dark:text-gray-200">
+                <li>Medical Expertise</li>
                 <li>Problem Solving</li>
                 <li>Team Collaboration</li>
                 <li>Attention to Detail</li>
                 <li>Time Management</li>
                 <li>Adaptability</li>
-                <li>Medical Fluency</li>
+                
               </ul>
             </div>
           </div>
